@@ -72,10 +72,7 @@ public class View {
 		}
 	}
 
-	public void refreshlist2(){
-		toDoL.remove(getSelected());
 
-	}
 
 	/**
 	 * 	get a input text in a JTextField.

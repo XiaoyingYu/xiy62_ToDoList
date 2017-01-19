@@ -30,8 +30,15 @@ public class Model {
 	 * delete a element from todolist.
 	 */
 	public void deleteListItem(String description){
-		ListItem list = new ListItem(description);
-		todolist.remove(list);
+		int position = -1;
+		for(int i=0;i<todolist.size();i++){
+			if (todolist.get(i).getDescription().equals(description)){
+				position = i;
+			}
+		}
+		if (position != -1) {
+			todolist.remove(position);
+		}
 
 	}
 	/**
