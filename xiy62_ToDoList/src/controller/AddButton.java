@@ -12,18 +12,22 @@ import view.View;
 
 public class AddButton implements ActionListener{
 	private Controller controller;
-	
+
 	public AddButton(Controller con){
 		controller=con;	    
-		
+
 	}
-	
+	/**
+	 * 	get input message from View.
+	 *  implement addListItem method to add this message into list.
+	 *  generate a new list.
+	 */
 	public void actionPerformed(ActionEvent event) {
 		String input = controller.getView().getValue();
 		controller.getModel().addListItem(input);
 		controller.getView().refreshlist(controller.getModel());
 		controller.getView().getInput().setText("");
-	
+
 	}
 	public Controller getController() {
 		return controller;
@@ -31,8 +35,8 @@ public class AddButton implements ActionListener{
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
-	
-	
-	
-	
+
+
+
+
 }

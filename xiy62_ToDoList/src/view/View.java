@@ -22,7 +22,10 @@ public class View {
 	private JTextField input;
 	private List toDoL;
 
-
+	/**
+	 * View Constructor
+	 * Create GUI component
+	 */
 
 	public View(){
 
@@ -58,34 +61,43 @@ public class View {
 		frame.add(deleteButton);
 		frame.setVisible(true);	
 	}
-
+	/**
+	 * a refresh method to get a new todolist.
+	 * 
+	 */
 	public void refreshlist(Model model){
 		toDoL.removeAll();
 		for(int i=0;i<model.getTodolist().size();i++){
 			toDoL.add(model.getTodolist().get(i).getDescription());
 		}
 	}
-	
+
 	public void refreshlist2(){
 		toDoL.remove(getSelected());
-	
+
 	}
-		
-	
-	
+
+	/**
+	 * 	get a input text in a JTextField.
+	 */
+
 	public String getValue(){
 		return input.getText();
-	
+
 	}
+	/**
+	 * 
+	 * get selected list in List component.
+	 */
 	public String getSelected(){
 		return toDoL.getSelectedItem();
-		
+
 	}
 
 	public JButton getAddButton() {
 		return addButton;
 	}
-	
+
 	public JButton getDeleteButton() {
 		return deleteButton;
 	}
@@ -99,7 +111,7 @@ public class View {
 		return toDoL;
 	}
 
-	
+
 }
 
 
