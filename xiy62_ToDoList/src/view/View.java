@@ -1,18 +1,27 @@
 package view;
 
-import java.awt.List;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Timestamp;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import java.sql.ResultSet;
 
 import model.ListItem;
 import model.Model;
 
-
+/**
+ * 
+ * Create Swing Component
+ *
+ */
 public class View {
 	private JFrame frame;
 	private JPanel panel1;
@@ -20,11 +29,13 @@ public class View {
 	private JButton addButton;
 	private JButton deleteButton;
 	private JTextField input;
-	private List toDoL;
+	private JTextField timeStamp;
+	private JList<ListItem> toDoL;
+	private DefaultListModel<ListItem> toDoList;
 
 	/**
 	 * View Constructor
-	 * Create GUI component
+	 * Create GUI swing component
 	 */
 
 	public View(){
@@ -48,14 +59,21 @@ public class View {
 		deleteButton.setBounds(470,430,200,25);
 		input= new JTextField("");
 		input.setBounds(20,20,310,25);
+		timeStamp = new JTextField("");
+		timeStamp.setBounds(20,60,310,25);
 
-		toDoL = new List(10,true);
+		toDoList = new DefaultListModel<ListItem>();
+		toDoL = new JList<ListItem>(toDoList);
+
+
+
 		toDoL.setBounds(20, 20, 310, 360);
 
 
 		frame.add(panel1);
 		frame.add(panel2);
 		panel1.add(input);
+		panel1.add(timeStamp);
 		panel2.add(toDoL);
 		frame.add(addButton);
 		frame.add(deleteButton);
@@ -65,12 +83,19 @@ public class View {
 	 * a refresh method to get a new todolist.
 	 * 
 	 */
+
+
 	public void refreshlist(Model model){
-		toDoL.removeAll();
+		toDoList.removeAllElements();
 		for(int i=0;i<model.getTodolist().size();i++){
-			toDoL.add(model.getTodolist().get(i).getDescription());
+			ListItem list = new ListItem(model.getTodolist().get(i).getId(),model.getTodolist().get(i).getDescription(),model.getTodolist().get(i).getTimestamp());
+			toDoList.addElement(list);
 		}
 	}
+
+
+
+
 
 
 
@@ -82,12 +107,24 @@ public class View {
 		return input.getText();
 
 	}
+	public java.sql.Timestamp getTimestamp(){
+		Timestamp ts = new Timestamp(System.currentTimeMillis());  
+		String tsStr = timeStamp.getText();  
+		try {  
+			ts = Timestamp.valueOf(tsStr);  
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		}  
+
+		return ts;
+	}
+
 	/**
 	 * 
 	 * get selected list in List component.
 	 */
 	public String getSelected(){
-		return toDoL.getSelectedItem();
+		return toDoL.getSelectedValue().getId()+toDoL.getSelectedValue().getDescription()+toDoL.getSelectedValue().getTimestamp();
 
 	}
 
@@ -103,12 +140,21 @@ public class View {
 	public JTextField getInput() {
 		return input;
 	}
-
-	public List getToDoL() {
+	public JList<ListItem> getToDoL() {
 		return toDoL;
 	}
 
+	public DefaultListModel<ListItem> getToDoList() {
+		return toDoList;
+	}
+	public JTextField getTimeStamp() {
+		return timeStamp;
 
+
+
+
+
+	}
 }
 
 

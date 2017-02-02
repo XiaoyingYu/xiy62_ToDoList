@@ -4,6 +4,7 @@ import view.View;
 
 import java.awt.event.ActionListener;
 
+import model.ListItem;
 import model.Model;
 //import actionListener.ActionListener;
 
@@ -28,6 +29,7 @@ public class Controller {
 
 
 	}
+
 
 
 	public View getView() {
