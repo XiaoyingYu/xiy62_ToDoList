@@ -7,16 +7,18 @@ public class ListItem {
 	private String description;
 	private int id;
 	private java.sql.Timestamp timestamp;
+	private int fk;
 	
 	/**
 	 * ListItem Constructor
 	 * Initialize id, description, timestamp of List.
 	 */
 
-	public ListItem(int id,String description,java.sql.Timestamp timestamp){
+	public ListItem(int id,String description,java.sql.Timestamp timestamp, int fk){
 		this.description=description;
 		this.id=id;
 		this.timestamp=timestamp;
+		this.fk=fk;
 }
 
 	public String getDescription() {
@@ -43,8 +45,17 @@ public class ListItem {
 		this.timestamp = timestamp;
 	}
 	
+	
+	public int getFk() {
+		return fk;
+	}
+
+	public void setFk(int fk) {
+		this.fk = fk;
+	}
+
 	public String toString(){
-		return id+description+timestamp;		
+		return id+" "+description;		
 		}
 
 }
